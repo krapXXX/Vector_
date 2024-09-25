@@ -54,4 +54,5 @@ int main()
 	obj13.Print();
 	obj13 = obj1 = obj9;
 	obj13.Print();
+	//check
 }
