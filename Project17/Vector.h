@@ -23,6 +23,7 @@ public:
 	Vector& operator +=(int a);
 	Vector& operator -=(int a);
 	Vector& operator *=(int a);
+	Vector& operator =(const Vector& a);
 
 	/// перегрузки операции Vector operator-(int a);
 };

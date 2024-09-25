@@ -240,3 +240,16 @@ Vector& Vector::operator *=(int a)
 	arr = temp1;
 	return temp;
 }
+Vector& Vector::operator=(const Vector& a) 
+{
+	if (this == &a) {
+		return *this;
+	}
+	if (arr != nullptr) {
+		delete[]arr;
+	}
+	size = a.size; arr = new int[size];
+	for (int i = 0; i < size; i++) {
+		arr[i] = a.arr[i];
+	} return *this;
+}
