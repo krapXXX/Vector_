@@ -2,9 +2,61 @@
 #include"Vector.h" 
 using namespace std;
 
+Vector operator-(int a, Vector& obj)
+{
+	int size = obj.GetSize();
+	int* arr = obj.GetArr();
+
+	if (a >= size)
+	{
+		return Vector(0);
+	}
+
+	int Size = size - a;
+
+	Vector result(Size);
+
+	for (int i = 0; i < Size; i++)
+	{
+		result.GetArr()[i] = arr[a + i];
+	}
+
+	return result;
+}
+ostream& operator<<(ostream& os, Vector& obj)
+{
+	for (int i = 0; i < obj.size; i++)
+	{
+		os << obj.arr[i] << "\t";
+	}
+	return os;
+}
+istream& operator>>(istream& is, Vector& obj)
+{
+	for (int i = 0; i < obj.size; i++)
+	{
+		cout << i << ": ";
+		is >> obj.arr[i];
+	}
+	return is;
+}
+
 int main()
 {
+	/*В класс Vector добавляем необходимые глобальные перегрузки:
+
+obj+=5; // в конец вектора добавить 5 элементов
+obj-=5;// если размер вектора >=5, уменьшаем размер, в противном случае возвращаем объект !
+obj*=5; // меняем значение всех элементов(*5)? размер не меняем!
+
+vector c = 5-obj; // возвращаем новый объект. без 5и первых элементов объекта obj.
+например: obj 1 2 3 4 5 6 7 8  9 10
+c = 6 7 8 9 10
+
+реализовать перегрузку ввода-вывода(friend)*/
 	srand(time(0));
+
+
 
 	Vector obj1(5); //-------------  1 2 3 4 5 
 	obj1.InputRand();

@@ -1,9 +1,4 @@
-﻿#include "Vector.h" 
-#include<iostream> 
-#include<Windows.h> 
-using namespace std;
-
-#include "Vector.h"
+﻿#include "Vector.h"
 #include<iostream>
 #include<Windows.h>
 using namespace std;
@@ -82,6 +77,30 @@ int Vector::PopBack()
 	size--;
 
 	return el;
+}
+
+int* Vector::GetArr()
+{
+	return arr;
+}
+
+int Vector::GetSize()
+{
+	return size;
+}
+
+void Vector::SetArr(const int* Arr)
+{
+	arr = new int[size];
+	for (int i = 0; i < size; i++)
+	{
+		arr[i] = Arr[i];
+	}
+}
+
+void Vector::SetSize(const int Size)
+{
+	size = Size;
 }
 
 Vector Vector::operator- (int a)
@@ -253,3 +272,4 @@ Vector& Vector::operator=(const Vector& a)
 		arr[i] = a.arr[i];
 	} return *this;
 }
+
