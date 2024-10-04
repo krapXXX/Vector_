@@ -13,13 +13,6 @@ Vector::Vector(int s)
 	size = s;
 	arr = new int[size] {0};
 }
-Vector::~Vector()
-{
-	cout << "Destructor\n";
-	delete[]arr;
-	size = 0;
-
-}
 Vector::Vector(const Vector& obj)
 {
 	cout << "Copy constructor\n";
@@ -29,6 +22,26 @@ Vector::Vector(const Vector& obj)
 	{
 		this->arr[i] = obj.arr[i];
 	}
+}
+Vector::Vector(initializer_list<int>obj)
+{
+	cout << "initializer list"<<endl;
+	cout << obj.size() << endl;
+	size = obj.size();
+	arr = new int[size];
+	for (auto x = obj.begin(); x != obj.end(); x++)
+	{
+		*arr = *x;
+		arr++;
+	}
+	arr -= size;
+}
+Vector::~Vector()
+{
+	cout << "Destructor\n";
+	delete[]arr;
+	size = 0;
+
 }
 void Vector::InputRand()
 {
@@ -45,7 +58,6 @@ void Vector::Print()
 	}
 	cout << "\n---------------------------------------------------\n";
 }
-
 void Vector::PushBack(int a)
 {
 	int* temp = new int[size + 1];  // ñîäàåì íîâûé ìàññèâ (òåê ðàçìåð +1)
@@ -62,7 +74,6 @@ void Vector::PushBack(int a)
 	size++;
 
 }
-
 int Vector::PopBack()
 {
 	int* temp = new int[size - 1];
@@ -83,12 +94,10 @@ int* Vector::GetArr()
 {
 	return arr;
 }
-
 int Vector::GetSize()
 {
 	return size;
 }
-
 void Vector::SetArr(const int* Arr)
 {
 	arr = new int[size];
@@ -97,7 +106,6 @@ void Vector::SetArr(const int* Arr)
 		arr[i] = Arr[i];
 	}
 }
-
 void Vector::SetSize(const int Size)
 {
 	size = Size;
@@ -112,7 +120,6 @@ Vector Vector::operator- (int a)
 	}
 	return rez;
 }
-
 Vector Vector::operator+(int a)
 {
 	Vector rez(size + a);
@@ -126,7 +133,6 @@ Vector Vector::operator+(int a)
 	}
 	return rez;
 }
-
 Vector Vector::operator+(Vector a)
 {
 	Vector rez(this->size + a.size);
@@ -139,7 +145,6 @@ Vector Vector::operator+(Vector a)
 	}
 	return rez;
 }
-
 Vector Vector::operator*(int a)
 {
 	Vector rez(size * a);
@@ -153,7 +158,6 @@ Vector Vector::operator*(int a)
 	}
 	return rez;
 }
-
 Vector Vector::operator++(int)//a++ 
 {
 	Vector temp = *this;
@@ -168,7 +172,6 @@ Vector Vector::operator++(int)//a++
 	size++;
 	return temp;
 }
-
 Vector& Vector::operator++()//++a 
 {
 	int* temp = new int[size + 1];
@@ -184,7 +187,6 @@ Vector& Vector::operator++()//++a
 	size++;
 	return *this;
 }
-
 Vector Vector::operator--(int a)
 {
 	Vector temp = *this;
@@ -198,7 +200,6 @@ Vector Vector::operator--(int a)
 	size--;
 	return temp;
 }
-
 Vector& Vector::operator--()
 {
 	int* temp = new int[size - 1];
@@ -212,7 +213,6 @@ Vector& Vector::operator--()
 	size--;
 	return *this;
 }
-
 Vector& Vector::operator+=(int a)
 {
 	Vector temp = *this;
@@ -230,7 +230,6 @@ Vector& Vector::operator+=(int a)
 	size += a;
 	return temp;
 }
-
 Vector& Vector:: operator -=(int a)
 {
 	if (a < size)
